@@ -22,9 +22,6 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Widget FadeInImage = Container(
-    child: new ,
-  )
 
   Widget networkImage = Container(
     child: new Image.network(

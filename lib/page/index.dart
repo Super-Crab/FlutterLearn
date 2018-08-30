@@ -4,6 +4,9 @@ import 'package:flutter_app/widget/banner.dart';
 import 'package:flutter_app/http/HttpUtil.dart';
 import 'package:flutter_app/http/Api.dart';
 
+import '../widget/WebViewWidget.dart';
+import '../widget/ToolBar.dart';
+
 class Index extends StatefulWidget {
   @override
   IndexState createState() => new IndexState();
@@ -26,8 +29,7 @@ class IndexState extends State<Index> {
               width: 1000.0,
               color: const Color(0x50000000),
               padding: const EdgeInsets.all(25.0),
-              child: new Text("text",
-                style: new TextStyle(color: Colors.white, fontSize: 15.0),),
+              child: new ToolBar(),
             ),
           )
         ],
@@ -49,7 +51,11 @@ class IndexState extends State<Index> {
           _bannerView = new BannerView(
               data: bannerData,
               onBannerClickListener: (index, data) {
-                print(index);
+                var imgUrl = data['url'];
+                var title = data['title'];
+                Navigator.of(context).push(new MaterialPageRoute(
+                    builder: (ctx) => new WebViewWidget(imgUrl,title)
+                ));
               });
         });
       }

@@ -1,0 +1,83 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+def releaseFlutterJar = project.file("${project.projectDir}/flutter/flutter/android-arm-release/flutter.jar")
+
+project.android.buildTypes.each {
+    addFlutterJarImplementationDependency(project, releaseFlutterJar)
+}
+project.android.buildTypes.whenObjectAdded {
+    addFlutterJarImplementationDependency(project, releaseFlutterJar)
+}
+
+private static void addFlutterJarImplementationDependency(Project project, releaseFlutterJar) {
+    project.dependencies {
+        String configuration
+        if (project.getConfigurations().findByName("implementation")) {
+            configuration = "implementation"
+        } else {
+            configuration = "compile"
+        }
+        add(configuration, project.files {
+            releaseFlutterJar
+        })
+    }
+}
+
+
+
+def addFlutterDeps = { variant ->
+    def allertAsset ="${project.projectDir.getAbsolutePath()}/flutter/assets/release"
+    Task mergeFlutterAssets = project.tasks.create(name: "mergeFlutterAssets${variant.name.capitalize()}", type: Copy) {
+        def outputDir = file("${project.projectDir}/flutter/assets/release/")
+
+        from zipTree(releaseFlutterJar)
+        destinationDir = outputDir
+
+        println(releaseFlutterJar)
+        println("${project.projectDir}")
+        println(" 解压 ")
+//        from "flutter_shared/**"
+//        into variant.mergeAssets.outputDir
+        from (allertAsset){
+            include "flutter_assets/**" // the working dir and its files
+            include "flutter_shared/**"
+            include "vm_snapshot_data"
+            include "vm_snapshot_instr"
+            include "isolate_snapshot_data"
+            include "isolate_snapshot_instr"
+        }
+        into variant.mergeAssets.outputDir
+    }
+    variant.outputs[0].processResources.dependsOn(mergeFlutterAssets)
+}
+project.android.libraryVariants.all addFlutterDeps

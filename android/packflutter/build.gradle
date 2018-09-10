@@ -54,27 +54,40 @@ private static void addFlutterJarImplementationDependency(Project project, relea
 }
 
 
-
 def addFlutterDeps = { variant ->
     def allertAsset ="${project.projectDir.getAbsolutePath()}/flutter/assets/release"
     Task mergeFlutterAssets = project.tasks.create(name: "mergeFlutterAssets${variant.name.capitalize()}", type: Copy) {
-        def outputDir = file("${project.projectDir}/flutter/assets/release/")
 
-        from zipTree(releaseFlutterJar)
-        destinationDir = outputDir
+        def outDir = "${project.projectDir.getAbsolutePath()}/flutter/flutter/flutter_shared"
+        delete outDir
+        exec{
+            executable "unZip"
+            def argv = []
+            argv << releaseFlutterJar
+            argv << "*.dat"
+            argv << "-d"
+            argv << outDir
+            args = argv
+            println commandLine
+        }
+        new File(allertAsset, 'flutter_shared/').mkdirs()
+        exec{
+            executable "mv"
+            def argv = []
+            argv << "$outDir/assets/flutter_shared/icudtl.dat"
+            argv << "$allertAsset/flutter_shared/"
+            args = argv
+            println commandLine
+        }
 
-        println(releaseFlutterJar)
-        println("${project.projectDir}")
-        println(" 解压 ")
-//        from "flutter_shared/**"
-//        into variant.mergeAssets.outputDir
+
         from (allertAsset){
             include "flutter_assets/**" // the working dir and its files
-            include "flutter_shared/**"
             include "vm_snapshot_data"
             include "vm_snapshot_instr"
             include "isolate_snapshot_data"
             include "isolate_snapshot_instr"
+            include "flutter_shared/icudtl.dat"
         }
         into variant.mergeAssets.outputDir
     }

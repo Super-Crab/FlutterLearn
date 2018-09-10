@@ -1,4 +1,4 @@
-include ':app', ':packflutter'
+include ':app', ':packflutter', ':aartest'
 
 def flutterProjectRoot = rootProject.projectDir.parentFile.toPath()
 

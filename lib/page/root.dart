@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'PlaceholderWidget.dart';
 import 'index.dart';
+import '../Calculator/calculator.dart';
 
 class App extends StatelessWidget {
 
@@ -26,7 +27,7 @@ class HomeState extends State<Home> {
 
   final List<Widget> _children = [
     new Index(),
-    PlaceholderWidget(Colors.deepOrange),
+    new CalculatorApp(),
     PlaceholderWidget(Colors.green)
   ];
 

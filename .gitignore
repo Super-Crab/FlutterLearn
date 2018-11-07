@@ -10,3 +10,8 @@ build/
 .idea/
 ._tmp/
 *.iml
+android/.idea
+*.project
+*.settings/
+*.classpath
+.idea/workspace.xml

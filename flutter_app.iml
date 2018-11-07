@@ -57,8 +57,6 @@
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_webview_plugin/example/lib/packages" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_webview_plugin/example/packages" />
       <excludeFolder url="file://$MODULE_DIR$/ios/.symlinks/plugins/flutter_webview_plugin/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/packages" />
-      <excludeFolder url="file://$MODULE_DIR$/test/packages" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

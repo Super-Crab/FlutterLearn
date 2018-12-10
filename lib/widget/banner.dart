@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import '../util/DimensUtils.dart' as DimenUtils;
 typedef void OnBannerClickListener(int index, dynamic itemData);
 typedef Widget BuildShowView(int index, dynamic itemData);
 
@@ -132,9 +132,9 @@ class BannerItem extends StatelessWidget {
       children: <Widget>[
         new Image.network(imgUrl, fit: BoxFit.cover, width: 1000.0,),
         new Align(
-          alignment: FractionalOffset.bottomCenter,
+          alignment: Alignment.bottomCenter,
           child: new Container(
-            width: 1000.0,
+            width: DimenUtils.getScreenWidth(context),
             color: const Color(0x50000000),
             padding: const EdgeInsets.all(5.0),
             child: new Text(title,

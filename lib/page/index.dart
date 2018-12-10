@@ -23,15 +23,6 @@ class IndexState extends State<Index> {
       body: new Stack(
         children: <Widget>[
           _bannerView,
-          new Align(
-            alignment: FractionalOffset.topRight,
-            child: new Container(
-              width: 1000.0,
-              color: const Color(0x50000000),
-              padding: const EdgeInsets.all(25.0),
-              child: new ToolBar(),
-            ),
-          )
         ],
       ),
     );

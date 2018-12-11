@@ -127,7 +127,6 @@ class BannerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("BannerItem build");
     return new Stack(
       children: <Widget>[
         new Image.network(imgUrl, fit: BoxFit.cover, width: 1000.0,),

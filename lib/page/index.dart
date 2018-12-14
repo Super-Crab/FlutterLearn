@@ -54,6 +54,15 @@ class IndexState extends State<Index> {
     }
   }
 
+  Widget _buildLoadText() {
+    return Container(child:  Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Text("加载中……"),
+      ),
+    ),);
+  }
+
   Widget buildItem(int i) {
     if(i == 0) {
       return new Container(
@@ -61,7 +70,11 @@ class IndexState extends State<Index> {
       );
     }
     --i;
-    return new NewsListItem(listData[i]);
+    if(i == listData.length - 1) {
+      return _buildLoadText();
+    } else {
+      return new NewsListItem(listData[i]);
+    }
   }
 
   @override

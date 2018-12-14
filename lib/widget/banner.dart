@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/BannerItemBean.dart';
 import '../util/DimensUtils.dart' as DimenUtils;
-typedef void OnBannerClickListener(int index, dynamic itemData);
+typedef void OnBannerClickListener(int index, BannerItemBean itemData);
 typedef Widget BuildShowView(int index, dynamic itemData);
 
 const IntegerMax = 0x7fffffff;
@@ -15,7 +16,7 @@ class BannerView extends StatefulWidget {
   //滑动需要秒数
   final int scrollTime; //毫秒
   final double height;
-  final List data;
+  final List<BannerItemBean> data;
 
 
   BannerView({Key key,
@@ -100,9 +101,9 @@ class BannerViewState extends State<BannerView> {
             physics: const PageScrollPhysics(
                 parent: const ClampingScrollPhysics()),
             itemBuilder: (BuildContext context, int index) {
-              var item = widget.data[index % _dataLength];
-              var imgUrl = item['imagePath'];
-              var title = item['title'];
+              BannerItemBean item = widget.data[index % _dataLength];
+              var imgUrl = item.imagePath;
+              var title = item.title;
               return new BannerItem(imgUrl: imgUrl, title: title,);
             },
             itemCount: IntegerMax,

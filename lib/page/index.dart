@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/BannerItemBean.dart';
 import 'package:flutter_app/model/IndexNewItemBean.dart';
 import 'package:flutter_app/model/IndexNewsBean.dart';
 import 'package:flutter_app/widget/banner.dart';
@@ -17,8 +18,6 @@ class Index extends StatefulWidget {
 class IndexState extends State<Index> {
 
   BannerView _bannerView;
-  var bannerData;
-
   List<IndexNewItemBean> listData = new List();
   var currentPage = 0;
   var countPage = 0;
@@ -89,15 +88,15 @@ class IndexState extends State<Index> {
   void getBanner() {
     HttpUtil.get(Api.BANNER, (data) {
       if (data != null) {
+        var list = data as List;
+        List<BannerItemBean> bannerItemBeanLists = new List();
+        bannerItemBeanLists = list.map((i) => BannerItemBean.fromJson(i)).toList();
         setState(() {
-          bannerData = data;
           _bannerView = new BannerView(
-              data: bannerData,
-              onBannerClickListener: (index, data) {
-                var imgUrl = data['url'];
-                var title = data['title'];
+              data: bannerItemBeanLists,
+              onBannerClickListener: (index, item) {
                 Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (ctx) => new WebViewWidget(imgUrl, title)
+                    builder: (ctx) => new WebViewWidget(item.url, item.title)
                 ));
               });
         });

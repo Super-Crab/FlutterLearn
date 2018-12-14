@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_app/model/IndexNewItemBean.dart';
+import '../widget/WebViewWidget.dart';
 
 class NewsListItem extends StatefulWidget {
   IndexNewItemBean itemData;
@@ -17,14 +19,16 @@ class _NewsListItemState extends State<NewsListItem> {
       children: <Widget>[
         Expanded(
             child: Row(
-          children: <Widget>[
-            Text('author : '),
-            Text(
-              widget.itemData.author,
-              style: new TextStyle(color: Theme.of(context).accentColor),
-            ),
-          ],
-        )),
+              children: <Widget>[
+                Text('author : '),
+                Text(
+                  widget.itemData.author,
+                  style: new TextStyle(color: Theme
+                      .of(context)
+                      .accentColor),
+                ),
+              ],
+            )),
         Text(widget.itemData.niceDate)
       ],
     );
@@ -44,29 +48,39 @@ class _NewsListItemState extends State<NewsListItem> {
       new Expanded(
         child: Text(
           widget.itemData.superChapterName,
-          style: new TextStyle(color: Theme.of(context).accentColor),
+          style: new TextStyle(color: Theme
+              .of(context)
+              .accentColor),
         ),
       )
     ]);
 
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 5.0),
-            child: row1,
+    return GestureDetector(
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 5.0),
+                child: row1,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                child: title,
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
+                child: row2,
+              ),
+              Divider()
+            ],
           ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-            child: title,
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(10.0, 5.0, 10.0, 5.0),
-            child: row2,
-          ),
-          Divider()
-        ],
-      ),
+        ),
+        onTap: (){
+          Navigator.of(context).push(new MaterialPageRoute(
+              builder: (ctx) =>
+              new WebViewWidget(widget.itemData.link, widget.itemData.title)
+          ));
+        }
     );
   }
 }

@@ -28,35 +28,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0-rc02'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compile(name: 'packflutter', ext: 'aar')
-}
-private Properties readPropertiesIfExist(File propertiesFile) {
-    Properties result = new Properties()
-    if (propertiesFile.exists()) {
-        propertiesFile.withReader('UTF-8') { reader -> result.load(reader) }
-    }
-    return result
-}
-
-File pluginsFile = new File(project.projectDir.parentFile.parentFile, '.flutter-plugins')
-Properties plugins = readPropertiesIfExist(pluginsFile)
-
-plugins.each { name, _ ->
-    def pluginProject = project.rootProject.findProject(":$name")
-    println "pluginProject"+pluginProject
-    if (pluginProject != null) {
-        project.dependencies {
-            if (project.getConfigurations().findByName("implementation")) {
-                implementation pluginProject
-            } else {
-                compile pluginProject
-            }
-        }
-//        pluginProject.afterEvaluate this.&addFlutterJarCompileOnlyDependency
-    } else {
-        project.logger.error("Plugin project :$name not found. Please update settings.gradle.")
-    }
 }

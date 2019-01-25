@@ -2,6 +2,7 @@
     // 使用 IntelliSense 了解相关属性。 
     // 悬停以查看现有属性的描述。
     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    // deviceid 为设备唯一标识 Android可以通过adb devices 获得，iOS查看查看模拟器的identifier
     "version": "0.2.0",
     "configurations": [
         {

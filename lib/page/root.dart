@@ -20,45 +20,62 @@ class Home extends StatefulWidget {
   HomeState createState() => new HomeState();
 }
 
-class HomeState extends State<Home> {
-  int _currentIndex = 0;
+class HomeState extends State<Home> with SingleTickerProviderStateMixin{
 
-  var appBarTitles = ['Home', 'Message', 'Profile'];
 
-  final List<Widget> _children = [
-    new Index(),
-    new CalculatorApp(),
-    PlaceholderWidget(Colors.green)
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      body: _children[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: onTabTapped,
-        currentIndex: _currentIndex,
-        items: [
-          BottomNavigationBarItem(
-              icon: new Icon(Icons.home), title: new Text(appBarTitles[0])),
-          BottomNavigationBarItem(
-              icon: new Icon(Icons.mail), title: new Text(appBarTitles[1])),
-          BottomNavigationBarItem(
-              icon: new Icon(Icons.person), title: new Text(appBarTitles[2]))
-        ],
-      ),
-    );
-  }
+  TabController _tabController;
 
 
   @override
   void initState() {
     print('initState()');
+    _tabController = new TabController(
+        initialIndex: 0,vsync: this, length: 4);
   }
 
-  void onTabTapped(int value) {
-    setState(() {
-      _currentIndex = value;
-    });
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new TabBarView(controller: _tabController,children: <Widget>[
+        new Index(),
+        new CalculatorApp(),
+        new Placeholder(),
+        new Placeholder()
+      ]),
+      bottomNavigationBar: Material(
+        color: const Color(0xFFF0EEEF), //底部导航栏主题颜色
+        child: SafeArea(
+          child: Container(
+            height: 65.0,
+            decoration: BoxDecoration(
+              color: const Color(0xFFF0F0F0),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: const Color(0xFFd0d0d0),
+                  blurRadius: 3.0,
+                  spreadRadius: 2.0,
+                  offset: Offset(-1.0, -1.0),
+                ),
+              ],
+            ),
+            child: TabBar(
+              controller: _tabController,
+              indicatorColor: Theme.of(context).primaryColor, //tab标签的下划线颜色
+              // labelColor: const Color(0xFF000000),
+              indicatorWeight: 3.0,
+              labelColor: Theme.of(context).primaryColor,
+              unselectedLabelColor: const Color(0xFF8E8E8E),
+              tabs: <Tab>[
+                Tab(text: 'Home', icon: Icon(Icons.home)),
+                Tab(text: 'Message', icon: Icon(Icons.mail)),
+                Tab(text: 'Profile', icon: Icon(Icons.person)),
+                Tab(text: 'Profile', icon: Icon(Icons.person)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
+
 }

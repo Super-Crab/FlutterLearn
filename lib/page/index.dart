@@ -15,7 +15,7 @@ class Index extends StatefulWidget {
   IndexState createState() => new IndexState();
 }
 
-class IndexState extends State<Index> {
+class IndexState extends State<Index> with AutomaticKeepAliveClientMixin{
 
   BannerView _bannerView;
   List<IndexNewItemBean> listData = new List();
@@ -36,6 +36,7 @@ class IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if(listData.length == 0) {
       return new Center(
         child: new CircularProgressIndicator(),
@@ -79,6 +80,7 @@ class IndexState extends State<Index> {
 
   @override
   void initState() {
+    print("initState");
     super.initState();
     getBanner();
     getArtList();
@@ -116,4 +118,8 @@ class IndexState extends State<Index> {
       }
     });
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

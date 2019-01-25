@@ -67,7 +67,7 @@ def addFlutterDeps = { variant ->
             argv << "-d"
             argv << outDir
             args = argv
-            println commandLine
+//            println commandLine
         }
         new File(allertAsset, 'flutter_shared/').mkdirs()
         exec{
@@ -76,7 +76,7 @@ def addFlutterDeps = { variant ->
             argv << "$outDir/assets/flutter_shared/icudtl.dat"
             argv << "$allertAsset/flutter_shared/"
             args = argv
-            println commandLine
+//            println commandLine
         }
 
 

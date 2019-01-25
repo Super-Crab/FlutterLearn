@@ -15,3 +15,4 @@ android/.idea
 *.settings/
 *.classpath
 .idea/workspace.xml
+android/packflutter/flutter/*

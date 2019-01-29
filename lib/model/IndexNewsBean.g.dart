@@ -7,7 +7,7 @@ IndexNewsBean _$IndexNewsBeanFromJson(Map<String, dynamic> json) {
 
   return IndexNewsBean(
       json['curPage'] as int,
-      datas as List<IndexNewItemBean>,
+      datas,
       json['offset'] as int,
       json['over'] as bool,
       json['pageCount'] as int,

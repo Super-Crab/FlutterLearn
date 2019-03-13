@@ -19,8 +19,11 @@ void main() {
   scheduleMicrotask(() => print('microtask #2 of 3'));
 
   new Future(() => print('future #3 of 4'))
-      .then((_) => new Future(
-                      () => print('future #3a (a new Future)')))
+      // .then((_) => new Future(
+      //                 () => print('future #3a (a new Future)')))
+      .then((_) {
+        new Future(() => print('future #3a (a new Future)'));
+      })
       .then((_) => print('future #3b'));
 
   new Future(() => print('future #4 of 4'))

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'PlaceholderWidget.dart';
 import 'index.dart';
 import '../Calculator/calculator.dart';
-
+import 'WidgetDemo.dart';
 class App extends StatelessWidget {
 
   @override
@@ -39,7 +39,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin{
       body: new TabBarView(controller: _tabController,children: <Widget>[
         new Index(),
         new CalculatorApp(),
-        new Placeholder(),
+        new WidgetDemo(),
         new Placeholder()
       ]),
       bottomNavigationBar: Material(

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../example/simple/Num.dart';
-
-import '../model/ListRouterBean.dart';
-
+import '../util/DimensUtils.dart' as DimensUtils;
 /**
  * Description:
  * Author:          peixuan.xie
@@ -14,13 +12,28 @@ class WidgetDemo extends StatefulWidget {
   WidgetDemoState createState() => new WidgetDemoState();
 }
 
+class ListRouterBean {
+  String name;
+  Widget widget;
+  List<ListRouterBean> children;
+
+  ListRouterBean(this.name, this.widget,
+      [this.children = const <ListRouterBean>[]]);
+}
+
+final List<ListRouterBean> listData = new List();
+
+
 class WidgetDemoState extends State<WidgetDemo> {
-  List<ListRouterBean> listData = new List();
 
   @override
   void initState() {
-    listData.add(new ListRouterBean(NumPage.sName, new NumPage()));
-    listData.add(new ListRouterBean(NumPage.sName, new NumPage()));
+    listData.clear();
+    listData.add(new ListRouterBean(NumPage.sName, new NumPage(), [
+      new ListRouterBean(NumPage.sName, new NumPage(), []),
+      new ListRouterBean(NumPage.sName, new NumPage(), [])
+    ]));
+    listData.add(new ListRouterBean(NumPage.sName, new NumPage(), []));
   }
 
   @override
@@ -32,7 +45,7 @@ class WidgetDemoState extends State<WidgetDemo> {
       body: new Stack(
         children: <Widget>[
           ListView.builder(
-            itemBuilder: (context, i) => buildItem(i),
+            itemBuilder: (context, i) => new ListRouterItem(context,listData[i]),
             itemCount: listData.length,
           ),
         ],
@@ -40,33 +53,54 @@ class WidgetDemoState extends State<WidgetDemo> {
     );
   }
 
-  buildItem(int i) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(context, new MaterialPageRoute(builder: (context) {
-          return listData[i].widget;
-        }));
-      },
-      child: Container(
-        child: Column(
-          children: <Widget>[
-            new Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Text(
-                    listData[i].name,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+}
+
+class ListRouterItem extends StatelessWidget {
+
+  final ListRouterBean _listRouterBean;
+
+  final BuildContext _buildContext;
+
+  const ListRouterItem(this._buildContext,this._listRouterBean);
+
+  Widget _buildTiles(ListRouterBean root) {
+    if (root.children.isEmpty)
+      return new GestureDetector(
+        onTap: () {
+          Navigator.push(_buildContext, new MaterialPageRoute(builder: (_buildContext) {
+            return root.widget;
+          }));
+        },
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              new Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    new Text(
+                      root.name,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            new Divider()
-          ],
+//              new Divider()
+            ],
+          ),
+          alignment: Alignment.center,
+          height: 50,
         ),
-        alignment: Alignment.center,
-        height: 50,
-      ),
+      );
+
+    return new ExpansionTile(
+      title: new Text(root.name),
+      children: root.children.map(_buildTiles).toList(),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _buildTiles(_listRouterBean);
   }
 }

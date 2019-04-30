@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../example/simple/Num.dart';
 import '../example/simple/LifeCyclePage.dart';
+import '../example/simple/StateA.dart';
+import '../example/simple/StateB.dart';
+import '../example/simple/StateC.dart';
 
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
@@ -36,6 +39,9 @@ class WidgetDemoState extends State<WidgetDemo> {
     ]));
     listData.add(new ListRouterBean("基础Widgets", null, [
       new ListRouterBean(LifeCyclePage.sName, new LifeCyclePage(), []),
+      new ListRouterBean(StateA.sName, new StateA(), []),
+      new ListRouterBean(StateB.sName, new StateB(), []),
+      new ListRouterBean(StateC.sName, new StateC(), []),
     ]));
   }
 

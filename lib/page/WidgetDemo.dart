@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../example/simple/Num.dart';
+import '../example/simple/LifeCyclePage.dart';
+
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
  * Description:
@@ -29,11 +31,12 @@ class WidgetDemoState extends State<WidgetDemo> {
   @override
   void initState() {
     listData.clear();
-    listData.add(new ListRouterBean(NumPage.sName, new NumPage(), [
+    listData.add(new ListRouterBean("Simple", null, [
       new ListRouterBean(NumPage.sName, new NumPage(), []),
-      new ListRouterBean(NumPage.sName, new NumPage(), [])
     ]));
-    listData.add(new ListRouterBean(NumPage.sName, new NumPage(), []));
+    listData.add(new ListRouterBean("基础Widgets", null, [
+      new ListRouterBean(LifeCyclePage.sName, new LifeCyclePage(), []),
+    ]));
   }
 
   @override

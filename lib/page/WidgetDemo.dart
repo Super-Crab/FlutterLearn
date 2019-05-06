@@ -7,6 +7,7 @@ import '../example/simple/StateB.dart';
 import '../example/simple/StateC.dart';
 import '../example/simple/basewidgets/TextDemo.dart';
 import '../example/simple/basewidgets/ButtonDemo.dart';
+import '../example/simple/basewidgets/ImageDemo.dart';
 
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
@@ -46,6 +47,7 @@ class WidgetDemoState extends State<WidgetDemo> {
       new ListRouterBean(StateC.sName, new StateC(), []),
       new ListRouterBean(TextDemo.sName, new TextDemo(), []),
       new ListRouterBean(ButtonDemo.sName, new ButtonDemo(), []),
+      new ListRouterBean(ImageDemo.sName, new ImageDemo(), []),
     ]));
   }
 

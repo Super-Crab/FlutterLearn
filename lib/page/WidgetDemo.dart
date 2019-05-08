@@ -12,6 +12,9 @@ import '../example/simple/basewidgets/SwitchAndCheckBoxDemo.dart';
 import '../example/simple/basewidgets/TextFieldDemo.dart';
 import '../example/simple/basewidgets/FormDemo.dart';
 
+import '../example/simple/layoutwidgets/RowAndColumnDemo.dart';
+import '../example/simple/layoutwidgets/FlexDemo.dart';
+
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
  * Description:
@@ -55,6 +58,10 @@ class WidgetDemoState extends State<WidgetDemo> {
       new ListRouterBean(TextFieldDemo.sName, new TextFieldDemo(), []),
       new ListRouterBean(FormDemo.sName, new FormDemo(), []),
     ]));
+    listData.add(new ListRouterBean("LayoutWidgets", null, [
+      new ListRouterBean(RowAndColumnDemo.sName, new RowAndColumnDemo(), []),
+      new ListRouterBean(FlexDemo.sName, new FlexDemo(), []),
+    ]))
   }
 
   @override
@@ -94,22 +101,25 @@ class ListRouterItem extends StatelessWidget {
         },
         child: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: new Row(
                   children: <Widget>[
-                    new Text(
-                      root.name,
-                      textAlign: TextAlign.center,
-                    ),
+                    new Expanded(
+                      child: Container(
+                        child: new Text(
+                          root.name,
+                          textAlign: TextAlign.center,
+                        ),
+                        height: 50,
+                      ),
+                    )
                   ],
                 ),
-              ),
-//              new Divider()
+              )
             ],
           ),
-          alignment: Alignment.center,
           height: 50,
         ),
       );

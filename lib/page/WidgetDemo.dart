@@ -14,6 +14,8 @@ import '../example/simple/basewidgets/FormDemo.dart';
 
 import '../example/simple/layoutwidgets/RowAndColumnDemo.dart';
 import '../example/simple/layoutwidgets/FlexDemo.dart';
+import '../example/simple/layoutwidgets/WrapAndFlowDemo.dart';
+import '../example/simple/layoutwidgets/StackAndPositionedDemo.dart';
 
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
@@ -61,7 +63,9 @@ class WidgetDemoState extends State<WidgetDemo> {
     listData.add(new ListRouterBean("LayoutWidgets", null, [
       new ListRouterBean(RowAndColumnDemo.sName, new RowAndColumnDemo(), []),
       new ListRouterBean(FlexDemo.sName, new FlexDemo(), []),
-    ]))
+      new ListRouterBean(WrapAndFlowDemo.sName, new WrapAndFlowDemo(), []),
+      new ListRouterBean(StackAndPositionedDemo.sName, new StackAndPositionedDemo(), []),
+    ]));
   }
 
   @override

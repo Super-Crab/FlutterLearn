@@ -18,6 +18,8 @@ import '../example/simple/layoutwidgets/WrapAndFlowDemo.dart';
 import '../example/simple/layoutwidgets/StackAndPositionedDemo.dart';
 
 import '../example/simple/containerwidgets/PaddingDemo.dart';
+import '../example/simple/containerwidgets/DecoratedBoxDemo.dart';
+import '../example/simple/containerwidgets/TransformDemo.dart';
 
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
@@ -70,6 +72,8 @@ class WidgetDemoState extends State<WidgetDemo> {
     ]));
     listData.add(new ListRouterBean("ContainerWidgets", null, [
       new ListRouterBean(PaddingDemo.sName, new PaddingDemo(), []),
+      new ListRouterBean(DecoratedBoxDemo.sName, new DecoratedBoxDemo(), []),
+      new ListRouterBean(TransformDemo.sName, new TransformDemo(), []),
     ]));
   }
 

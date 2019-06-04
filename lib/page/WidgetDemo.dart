@@ -22,6 +22,10 @@ import '../example/simple/containerwidgets/DecoratedBoxDemo.dart';
 import '../example/simple/containerwidgets/TransformDemo.dart';
 import '../example/simple/containerwidgets/ContainerDemo.dart';
 
+import '../example/simple/scrollablewidgets/SingleChildScrollViewDemo.dart';
+import '../example/simple/scrollablewidgets/GridViewDemo.dart';
+import '../example/simple/scrollablewidgets/CustomScrollViewDemo.dart';
+
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
  * Description:
@@ -76,6 +80,11 @@ class WidgetDemoState extends State<WidgetDemo> {
       new ListRouterBean(DecoratedBoxDemo.sName, new DecoratedBoxDemo(), []),
       new ListRouterBean(TransformDemo.sName, new TransformDemo(), []),
       new ListRouterBean(ContainerDemo.sName, new ContainerDemo(), []),
+    ]));
+    listData.add(new ListRouterBean("scrollablewidgets", null, [
+      new ListRouterBean(SingleChildScrollViewDemo.sName, new SingleChildScrollViewDemo(), []),
+      new ListRouterBean(GridViewDemo.sName, new GridViewDemo(), []),
+      new ListRouterBean(CustomScrollViewDemo.sName, new CustomScrollViewDemo(), []),
     ]));
   }
 

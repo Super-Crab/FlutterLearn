@@ -28,6 +28,10 @@ import '../example/simple/scrollablewidgets/CustomScrollViewDemo.dart';
 import '../example/simple/scrollablewidgets/ScrollControllerDemo.dart';
 import '../example/simple/scrollablewidgets/ScrollNotificationDemo.dart';
 
+import '../example/simple/functionwidgets/WillPopScopeDemo.dart';
+import '../example/simple/functionwidgets/InheritedWidgetDemo.dart';
+import '../example/simple/functionwidgets/ThemeDataDemo.dart';
+
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
  * Description:
@@ -89,6 +93,11 @@ class WidgetDemoState extends State<WidgetDemo> {
       new ListRouterBean(CustomScrollViewDemo.sName, new CustomScrollViewDemo(), []),
       new ListRouterBean(ScrollControllerDemo.sName, new ScrollControllerDemo(), []),
       new ListRouterBean(ScrollNotificationDemo.sName, new ScrollNotificationDemo(), []),
+    ]));
+    listData.add(new ListRouterBean("functionwidgets", null, [
+      new ListRouterBean(WillPopScopeDemo.sName, new WillPopScopeDemo(), []),
+      new ListRouterBean(InheritedWidgetDemo.sName, new InheritedWidgetDemo(), []),
+      new ListRouterBean(ThemeDataDemo.sName, new ThemeDataDemo(), []),
     ]));
   }
 

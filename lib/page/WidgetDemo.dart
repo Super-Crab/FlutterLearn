@@ -25,6 +25,8 @@ import '../example/simple/containerwidgets/ContainerDemo.dart';
 import '../example/simple/scrollablewidgets/SingleChildScrollViewDemo.dart';
 import '../example/simple/scrollablewidgets/GridViewDemo.dart';
 import '../example/simple/scrollablewidgets/CustomScrollViewDemo.dart';
+import '../example/simple/scrollablewidgets/ScrollControllerDemo.dart';
+import '../example/simple/scrollablewidgets/ScrollNotificationDemo.dart';
 
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
@@ -85,6 +87,8 @@ class WidgetDemoState extends State<WidgetDemo> {
       new ListRouterBean(SingleChildScrollViewDemo.sName, new SingleChildScrollViewDemo(), []),
       new ListRouterBean(GridViewDemo.sName, new GridViewDemo(), []),
       new ListRouterBean(CustomScrollViewDemo.sName, new CustomScrollViewDemo(), []),
+      new ListRouterBean(ScrollControllerDemo.sName, new ScrollControllerDemo(), []),
+      new ListRouterBean(ScrollNotificationDemo.sName, new ScrollNotificationDemo(), []),
     ]));
   }
 

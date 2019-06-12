@@ -33,6 +33,9 @@ import '../example/simple/functionwidgets/InheritedWidgetDemo.dart';
 import '../example/simple/functionwidgets/ThemeDataDemo.dart';
 
 import '../example/simple/eventwidgets/PointerDemo.dart';
+import '../example/simple/eventwidgets/GestureDetectorDemo.dart';
+import '../example/simple/eventwidgets/DragDemo.dart';
+import '../example/simple/eventwidgets/ScaleDemo.dart';
 
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
@@ -103,6 +106,9 @@ class WidgetDemoState extends State<WidgetDemo> {
     ]));
     listData.add(new ListRouterBean("eventwidgets", null, [
       new ListRouterBean(PointerDemo.sName, new PointerDemo(), []),
+      new ListRouterBean(GestureDetectorDemo.sName, new GestureDetectorDemo(), []),
+      new ListRouterBean(DragDemo.sName, new DragDemo(), []),
+      new ListRouterBean(ScaleDemo.sName, new ScaleDemo(), []),
     ]));
   }
 

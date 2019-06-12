@@ -32,6 +32,8 @@ import '../example/simple/functionwidgets/WillPopScopeDemo.dart';
 import '../example/simple/functionwidgets/InheritedWidgetDemo.dart';
 import '../example/simple/functionwidgets/ThemeDataDemo.dart';
 
+import '../example/simple/eventwidgets/PointerDemo.dart';
+
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
  * Description:
@@ -98,6 +100,9 @@ class WidgetDemoState extends State<WidgetDemo> {
       new ListRouterBean(WillPopScopeDemo.sName, new WillPopScopeDemo(), []),
       new ListRouterBean(InheritedWidgetDemo.sName, new InheritedWidgetDemo(), []),
       new ListRouterBean(ThemeDataDemo.sName, new ThemeDataDemo(), []),
+    ]));
+    listData.add(new ListRouterBean("eventwidgets", null, [
+      new ListRouterBean(PointerDemo.sName, new PointerDemo(), []),
     ]));
   }
 

@@ -38,6 +38,10 @@ import '../example/simple/eventwidgets/DragDemo.dart';
 import '../example/simple/eventwidgets/ScaleDemo.dart';
 import '../example/simple/eventwidgets/NotificationDemo.dart';
 
+import '../example/simple/animwidgets/ScaleAnimationDemo.dart';
+import '../example/simple/animwidgets/HeroDemo.dart';
+import '../example/simple/animwidgets/StaggerDemo.dart';
+
 import '../util/DimensUtils.dart' as DimensUtils;
 /**
  * Description:
@@ -111,6 +115,11 @@ class WidgetDemoState extends State<WidgetDemo> {
       new ListRouterBean(DragDemo.sName, new DragDemo(), []),
       new ListRouterBean(ScaleDemo.sName, new ScaleDemo(), []),
       new ListRouterBean(NotificationDemo.sName, new NotificationDemo(), []),
+    ]));
+    listData.add(new ListRouterBean("animwidgets", null, [
+      new ListRouterBean(ScaleAnimationDemo.sName, new ScaleAnimationDemo(), []),
+      new ListRouterBean(HeroDemo.sName, new HeroDemo(), []),
+      new ListRouterBean(StaggerDemo.sName, new StaggerDemo(), []),
     ]));
   }
 
